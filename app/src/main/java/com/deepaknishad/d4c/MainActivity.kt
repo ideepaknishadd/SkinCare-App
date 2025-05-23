@@ -130,7 +130,8 @@ fun SkincareApp() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFF1E1E1E)), verticalArrangement = Arrangement.spacedBy(16.dp)
+                .background(Color(0xFF1E1E1E)),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
                 // Discount Banner
@@ -314,14 +315,14 @@ fun DiscountBanner() {
     }
 }
 
-data class Category(val name: String/*, val imageUrl: String*/)
+data class Category(val name: String)
 
 val categories = listOf(
-    Category("Cleansers"/*, "https://example.com/cleansers.png"*/),
-    Category("Toner"/*, "https://example.com/toner.png"*/),
-    Category("Serums"/*, "https://example.com/serums.png"*/),
-    Category("Moisturisers"/*, "https://example.com/moisturisers.png"*/),
-    Category("Sunscreen"/*, "https://example.com/sunscreen.png"*/)
+    Category("Cleansers"),
+    Category("Toner"),
+    Category("Serums"),
+    Category("Moisturisers"),
+    Category("Sunscreen")
 )
 
 @Composable
@@ -389,65 +390,7 @@ val products = listOf(
 )
 
 @Composable
-fun ProductItem(product: Product, isLastItem: Boolean) {/*Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                start = 16.dp, end = 16.dp, top = 0.dp, bottom = if (isLastItem) 40.dp else 0.dp
-            )
-            .clip(RoundedCornerShape(16.dp))
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(Color(0xFF4A4A4A), Color(0xFF2A2A2A))
-                )
-            )
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Image(
-                painter = rememberAsyncImagePainter(product.imageUrl),
-                contentDescription = product.name,
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(RoundedCornerShape(8.dp))
-            )
-            Column(
-                modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
-            ) {
-
-
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    IconButton(
-                        onClick = { *//* Add to cart *//* },
-                        modifier = Modifier
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF2A2F30))
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ShoppingCart,
-                            contentDescription = "Add to cart",
-                            tint = Color(0xFF00FF00),
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                }
-            }
-        }
-    }*/
-
+fun ProductItem(product: Product, isLastItem: Boolean) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -644,8 +587,7 @@ fun ProductItem(product: Product, isLastItem: Boolean) {/*Box(
                                     width = 2.dp, // Thickness of the outline
                                     color = Color(0xFF00FF00), // Color of the outline
                                     shape = CircleShape
-                                ),
-                            contentAlignment = Alignment.Center
+                                ), contentAlignment = Alignment.Center
                         ) {
                             Image(
                                 painter = painterResource(R.drawable.cart3),
