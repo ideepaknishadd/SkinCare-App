@@ -48,7 +48,7 @@ To run this UI practice app locally:
 
 1. **Clone the Repository** 📥:
    ```bash
-   git clone https://github.com/yourusername/skincare-app.git
+   git clone https://github.com/ideepaknishadd/SkinCare-App.git
    ```
 
 2. **Open in Android Studio** 🖥️:
