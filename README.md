@@ -103,4 +103,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-**Engineered with ❤️ by Deepak Nishad**
+**Crafted with ❤️ by Deepak Nishad**
