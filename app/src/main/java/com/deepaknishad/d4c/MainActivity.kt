@@ -50,6 +50,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -76,7 +77,10 @@ fun SkincareApp() {
             TopAppBar(
                 title = {
                 Text(
-                    "Shop", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold
+                    "Shop",
+                    color = Color.White,
+                    fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._18ssp).value.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }, navigationIcon = {
                 IconButton(onClick = { /* Handle back */ }) {
@@ -92,37 +96,41 @@ fun SkincareApp() {
                         Icons.Default.Search,
                         contentDescription = "Search",
                         tint = Color.White,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp))
                     )
                 }
                 BadgedBox(badge = {
                     Badge(
-                        modifier = Modifier.offset(x = (-7).dp, y = 14.dp),
-                        containerColor = Color(0xFF00FF00)
+                        modifier = Modifier.offset(
+                            x = dimensionResource(id = com.intuit.sdp.R.dimen._minus5sdp).value.dp,
+                            y = dimensionResource(id = com.intuit.sdp.R.dimen._12sdp).value.dp
+                        ), containerColor = Color(0xFF00FF00)
                     ) { Text("5", color = Color.Black) }
                 }) {
                     Icon(
                         Icons.Default.FavoriteBorder,
                         contentDescription = "Favorites",
                         tint = Color.White,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp))
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)))
                 BadgedBox(badge = {
                     Badge(
-                        modifier = Modifier.offset(x = (-7).dp, y = 14.dp),
-                        containerColor = Color(0xFF00FF00)
+                        modifier = Modifier.offset(
+                            x = dimensionResource(id = com.intuit.sdp.R.dimen._minus5sdp).value.dp,
+                            y = dimensionResource(id = com.intuit.sdp.R.dimen._12sdp).value.dp
+                        ), containerColor = Color(0xFF00FF00)
                     ) { Text("3", color = Color.Black) }
                 }) {
                     Icon(
                         Icons.Default.ShoppingCart,
                         contentDescription = "Cart",
                         tint = Color.White,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._24sdp))
                     )
                 }
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp)))
             }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF1E1E1E))
             )
         }) { paddingValues ->
@@ -131,7 +139,7 @@ fun SkincareApp() {
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(Color(0xFF1E1E1E)),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
         ) {
             item {
                 // Discount Banner
@@ -146,8 +154,10 @@ fun SkincareApp() {
             item {
                 // Horizontal scroll of categories
                 LazyRow(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    modifier = Modifier
+                        .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
+                        .offset(y = dimensionResource(id = com.intuit.sdp.R.dimen._minus6sdp)),
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
                 ) {
                     items(categories) { category ->
                         CategoryItem(category)
@@ -173,17 +183,22 @@ fun NewProductHeader() {
     // New Products
     Row(
         modifier = Modifier
-            .padding(top = 10.dp)
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._16sdp)),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            "New products", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold
+            "New products",
+            color = Color.White,
+            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._18ssp).value.sp,
+            fontWeight = FontWeight.Bold
         )
         Text(
-            "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
+            "See all",
+            color = Color.White,
+            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp,
+            style = TextStyle(
                 textDecoration = TextDecoration.Underline, color = Color.White
             ) // Add underline
         )
@@ -196,15 +211,22 @@ fun CategoryHeader() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .offset(y = dimensionResource(id = com.intuit.sdp.R.dimen._minus5sdp))
+            .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._14sdp)),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            "Categories", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold
+            "Categories",
+            color = Color.White,
+            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._18ssp).value.sp,
+            fontWeight = FontWeight.Bold
         )
         Text(
-            "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
+            "See all",
+            color = Color.White,
+            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp,
+            style = TextStyle(
                 textDecoration = TextDecoration.Underline, color = Color.White
             ) // Add underline
         )
@@ -225,36 +247,49 @@ fun DiscountBanner() {
             modifier = Modifier.fillMaxWidth() // Fill the Box
         )
         Column(
-            modifier = Modifier.padding(top = 24.dp), // Adjust for vertical positioning
             horizontalAlignment = Alignment.Start
         ) {
             Text(
                 "GET 20% OFF",
                 color = Color.White,
-                fontSize = 28.sp,
+                fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._20ssp).value.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 50.dp, top = 20.dp)
+                modifier = Modifier.padding(
+                    start = dimensionResource(id = com.intuit.sdp.R.dimen._32sdp),
+                    top = dimensionResource(id = com.intuit.sdp.R.dimen._28sdp)
+                )
             )
             Text(
                 "Get 20% off",
                 color = Color.White,
-                fontSize = 16.sp,
-                modifier = Modifier.padding(start = 50.dp, top = 6.dp)
+                fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp,
+                modifier = Modifier.padding(
+                    start = dimensionResource(id = com.intuit.sdp.R.dimen._32sdp),
+                    top = dimensionResource(id = com.intuit.sdp.R.dimen._4sdp)
+                )
             )
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 50.dp, top = 40.dp, end = 90.dp),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._32sdp),
+                        top = dimensionResource(id = com.intuit.sdp.R.dimen._24sdp),
+                        end = dimensionResource(id = com.intuit.sdp.R.dimen._80sdp)
+                    ), verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
                     onClick = { /* Handle click */ },
-                    modifier = Modifier.height(34.dp),
+                    modifier = Modifier.height(dimensionResource(id = com.intuit.sdp.R.dimen._28sdp)),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00FF00)),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
                 ) {
-                    Text("12-16 October", color = Color.Black, fontSize = 14.sp)
+                    Text(
+                        "12-16 October",
+                        color = Color.Black,
+                        fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._10ssp).value.sp,
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
                 }
 
                 Spacer(modifier = Modifier.weight(1f)) // Pushes the image to the end
@@ -262,7 +297,7 @@ fun DiscountBanner() {
                 Image(
                     painter = painterResource(id = R.drawable.image_view),
                     contentDescription = "Icon",
-                    modifier = Modifier.size(40.dp)
+                    modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._32sdp))
                 )
             }
 
@@ -271,42 +306,47 @@ fun DiscountBanner() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = 70.dp, top = 58.dp, bottom = 16.dp
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._50sdp),
+                        top = dimensionResource(id = com.intuit.sdp.R.dimen._46sdp),
+                        bottom = dimensionResource(id = com.intuit.sdp.R.dimen._14sdp)
                     ), // Adjust padding as needed
-                horizontalArrangement = Arrangement.spacedBy(8.dp), // Space between indicators
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)), // Space between indicators
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Indicator 1 (active, highlighted)
                 Box(
                     modifier = Modifier
                         .size(
-                            width = 20.dp, height = 8.dp
+                            width = dimensionResource(id = com.intuit.sdp.R.dimen._18sdp),
+                            height = dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)
                         ) // Rectangular shape: wider than tall
                         .background(
                             color = Color(0xFF00FF00),
-                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                            shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)) // Radius for rounded corners
                         )
                 )
                 // Indicator 2 (inactive)
                 Box(
                     modifier = Modifier
                         .size(
-                            width = 20.dp, height = 8.dp
+                            width = dimensionResource(id = com.intuit.sdp.R.dimen._18sdp),
+                            height = dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)
                         ) // Rectangular shape
                         .background(
                             color = Color(0xFF111111),
-                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                            shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)) // Radius for rounded corners
                         )
                 )
                 // Indicator 3 (inactive)
                 Box(
                     modifier = Modifier
                         .size(
-                            width = 20.dp, height = 8.dp
+                            width = dimensionResource(id = com.intuit.sdp.R.dimen._18sdp),
+                            height = dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)
                         ) // Rectangular shape
                         .background(
                             color = Color(0xFF111111),
-                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                            shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)) // Radius for rounded corners
                         )
                 )
             }
@@ -330,7 +370,7 @@ fun CategoryItem(category: Category) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Box(
             modifier = Modifier
-                .size(60.dp) // Overall size of the circular container
+                .size(dimensionResource(id = com.intuit.sdp.R.dimen._46sdp)) // Overall size of the circular container
                 .clip(CircleShape) // Clip the entire composable to a circle
                 .background(Color(0xFF111111)), // Background color of the circle
             contentAlignment = Alignment.Center // Center the image inside the Box
@@ -339,14 +379,14 @@ fun CategoryItem(category: Category) {
                 //            painter = rememberAsyncImagePainter(category.imageUrl),
                 painter = painterResource(id = R.drawable.categorysample), // Using drawable resource
                 contentDescription = category.name,
-                modifier = Modifier.size(50.dp) // Smaller size for the image itself
+                modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._36sdp)) // Smaller size for the image itself
             )
         }
         Text(
             category.name,
             color = Color.White,
-            fontSize = 12.sp,
-            modifier = Modifier.padding(top = 4.dp)
+            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._10ssp).value.sp,
+            modifier = Modifier.padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._4sdp))
         )
     }
 }
@@ -394,7 +434,7 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = if (isLastItem) 40.dp else 0.dp)
+            .padding(bottom = if (isLastItem) dimensionResource(id = com.intuit.sdp.R.dimen._30sdp) else 0.dp)
             .wrapContentHeight()
     ) {
         Image(
@@ -404,21 +444,24 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
             modifier = Modifier.fillMaxWidth() // Fill the Box
         )
         Column(
-            modifier = Modifier.padding(top = 12.dp), // Adjust for vertical positioning
             horizontalAlignment = Alignment.Start
         ) {
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 24.dp),
+                    .padding(
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
+                        top = dimensionResource(id = com.intuit.sdp.R.dimen._4sdp),
+                        end = dimensionResource(id = com.intuit.sdp.R.dimen._20sdp)
+                    ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
 
                 // Favorite Icon with Circular Background
                 Box(
                     modifier = Modifier
-                        .size(40.dp) // Size of the background circle
+                        .size(dimensionResource(id = com.intuit.sdp.R.dimen._32sdp)) // Size of the background circle
                         .clip(CircleShape)
                         .background(Color.Black), // Dark gray to blend with the gradient
                     contentAlignment = Alignment.Center
@@ -427,7 +470,7 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                         imageVector = if (product.isBestSeller) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "Favorite",
                         tint = Color(0xFF8B5CF6),
-                        modifier = Modifier.size(26.dp)
+                        modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                     )
                 }
 
@@ -436,15 +479,17 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                 if (product.isBestSeller) {
                     Button(
                         onClick = { /* Handle click */ },
-                        modifier = Modifier.height(34.dp),
+                        modifier = Modifier
+                            .padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._6sdp))
+                            .height(dimensionResource(id = com.intuit.sdp.R.dimen._28sdp)),
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
-                        shape = RoundedCornerShape(16.dp)
+                        shape = RoundedCornerShape(dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
                     ) {
                         Text(
                             "Best Seller",
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFF00FF00),
-                            fontSize = 14.sp
+                            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp
                         )
                     }
                 }
@@ -457,7 +502,8 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                 contentDescription = "Product Image",
                 modifier = Modifier
                     .size(
-                        width = 800.dp, height = 350.dp
+                        width = dimensionResource(id = com.intuit.sdp.R.dimen._500sdp),
+                        height = dimensionResource(id = com.intuit.sdp.R.dimen._250sdp)
                     ) // Set specific width and height
                     .align(Alignment.CenterHorizontally) // Center the image horizontally
             )
@@ -465,8 +511,8 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp)
-                    .offset(y = (-7).dp)
+                    .padding(horizontal = dimensionResource(id = com.intuit.sdp.R.dimen._16sdp))
+                    .offset(y = dimensionResource(id = com.intuit.sdp.R.dimen._minus6sdp))
                     .wrapContentHeight()
             ) {
                 Image(
@@ -478,7 +524,9 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
 
                 Column(
                     modifier = Modifier.padding(
-                        top = 12.dp, start = 14.dp, end = 14.dp
+                        top = dimensionResource(id = com.intuit.sdp.R.dimen._10sdp),
+                        start = dimensionResource(id = com.intuit.sdp.R.dimen._12sdp),
+                        end = dimensionResource(id = com.intuit.sdp.R.dimen._12sdp)
                     ), // Adjust for vertical positioning
                     horizontalAlignment = Alignment.Start
                 ) {
@@ -491,17 +539,17 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                         Text(
                             product.name,
                             color = Color(0xFF00FF00),
-                            fontSize = 20.sp,
+                            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._14ssp).value.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily(Font(R.font.tangerine, FontWeight.Bold))
                         )
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
                                 modifier = Modifier
-                                    .size(8.dp)
+                                    .size(dimensionResource(id = com.intuit.sdp.R.dimen._6sdp))
                                     .clip(CircleShape)
                                     .background(
                                         if (product.inStock) Color(0xFF00FF00) else Color(0xFFFF0000)
@@ -510,7 +558,7 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                             Text(
                                 if (product.inStock) "In stock" else "Out of stock",
                                 color = if (product.inStock) Color(0xFF00FF00) else Color(0xFFFF0000),
-                                fontSize = 12.sp
+                                fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._10ssp).value.sp
                             )
                         }
                     }
@@ -518,37 +566,36 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                     Text(
                         product.description,
                         color = Color.White,
-                        fontSize = 16.sp,
-                        modifier = Modifier.padding(top = 8.dp)
+                        fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp,
+                        modifier = Modifier.padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._6sdp))
                     )
 
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._6sdp)),
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(top = 30.dp)
+                        modifier = Modifier.padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._14sdp))
                     ) {
                         Text(
                             product.price,
                             color = Color(0xFF8B5CF6),
-                            fontSize = 18.sp,
+                            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._12ssp).value.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
                             product.originalPrice,
                             color = Color(0xFF808080),
-                            fontSize = 16.sp,
+                            fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._10ssp).value.sp,
                             textDecoration = TextDecoration.LineThrough
                         )
                     }
 
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
                         Row(
-                            modifier = Modifier.padding(top = 8.dp),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            modifier = Modifier.padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)),
+                            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             repeat(5) {
@@ -556,15 +603,15 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                                     imageVector = Icons.Default.Star,
                                     contentDescription = "Star",
                                     tint = Color(0xFFFFD700),
-                                    modifier = Modifier.size(18.dp)
+                                    modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._12sdp))
                                 )
                             }
 
                             Text(
                                 "249 reviews",
                                 color = Color.White,
-                                fontSize = 14.sp,
-                                modifier = Modifier.padding(start = 4.dp),
+                                fontSize = dimensionResource(id = com.intuit.ssp.R.dimen._10ssp).value.sp,
+                                modifier = Modifier.padding(start = dimensionResource(id = com.intuit.sdp.R.dimen._3sdp)),
                                 style = TextStyle(
                                     textDecoration = TextDecoration.Underline, color = Color.White
                                 ) // Add underline
@@ -574,17 +621,21 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
 
                     Row(
                         modifier = Modifier
+                            .padding(top = dimensionResource(id = com.intuit.sdp.R.dimen._2sdp))
                             .fillMaxWidth()
-                            .offset(x = (-2).dp, y = (-36).dp),
+                            .offset(
+                                x = dimensionResource(id = com.intuit.sdp.R.dimen._8sdp),
+                                y = dimensionResource(id = com.intuit.sdp.R.dimen._minus24sdp)
+                            ),
                         horizontalArrangement = Arrangement.End,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(50.dp) // Size of the background circle
+                                .size(dimensionResource(id = com.intuit.sdp.R.dimen._40sdp)) // Size of the background circle
                                 .clip(CircleShape)
                                 .border(
-                                    width = 2.dp, // Thickness of the outline
+                                    width = dimensionResource(id = com.intuit.sdp.R.dimen._1sdp), // Thickness of the outline
                                     color = Color(0xFF00FF00), // Color of the outline
                                     shape = CircleShape
                                 ), contentAlignment = Alignment.Center
@@ -593,7 +644,7 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                                 painter = painterResource(R.drawable.cart3),
                                 contentDescription = "Cart",
                                 colorFilter = ColorFilter.tint(Color(0xFF00FF00)),
-                                modifier = Modifier.size(26.dp)
+                                modifier = Modifier.size(dimensionResource(id = com.intuit.sdp.R.dimen._20sdp))
                             )
                         }
                     }
