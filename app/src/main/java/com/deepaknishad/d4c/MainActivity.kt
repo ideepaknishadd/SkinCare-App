@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -121,174 +122,191 @@ fun SkincareApp() {
             }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF3D3D3D))
             )
         }) { paddingValues ->
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFF3D3D3D))
+                .background(Color(0xFF3D3D3D)),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Discount Banner
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.shop_flow_card),
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier.fillMaxWidth() // Fill the Box
-                )
-                Column(
-                    modifier = Modifier.padding(top = 24.dp), // Adjust for vertical positioning
-                    horizontalAlignment = Alignment.Start
+            item {
+                // Discount Banner
+                DiscountBanner()
+            }
+
+            item {
+                // Categories Row Title
+                CategoryHeader()
+            }
+
+            item {
+                // Horizontal scroll of categories
+                LazyRow(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Text(
-                        "GET 20% OFF",
-                        color = Color.White,
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(start = 50.dp, top = 20.dp)
-                    )
-                    Text(
-                        "Get 20% off",
-                        color = Color.White,
-                        fontSize = 16.sp,
-                        modifier = Modifier.padding(start = 50.dp, top = 6.dp)
-                    )
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 50.dp, top = 40.dp, end = 90.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Button(
-                            onClick = { /* Handle click */ },
-                            modifier = Modifier.height(34.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00FF00)),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Text("12-16 October", color = Color.Black, fontSize = 14.sp)
-                        }
-
-                        Spacer(modifier = Modifier.weight(1f)) // Pushes the image to the end
-
-                        Image(
-                            painter = painterResource(id = R.drawable.image_view),
-                            contentDescription = "Icon",
-                            modifier = Modifier.size(40.dp)
-                        )
+                    items(categories) { category ->
+                        CategoryItem(category)
                     }
-
-                    // Indicators as rounded rectangles
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                start = 70.dp, top = 58.dp, bottom = 16.dp
-                            ), // Adjust padding as needed
-                        horizontalArrangement = Arrangement.spacedBy(8.dp), // Space between indicators
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        // Indicator 1 (active, highlighted)
-                        Box(
-                            modifier = Modifier
-                                .size(
-                                    width = 20.dp, height = 8.dp
-                                ) // Rectangular shape: wider than tall
-                                .background(
-                                    color = Color(0xFF00FF00),
-                                    shape = RoundedCornerShape(4.dp) // Radius for rounded corners
-                                )
-                        )
-                        // Indicator 2 (inactive)
-                        Box(
-                            modifier = Modifier
-                                .size(
-                                    width = 20.dp, height = 8.dp
-                                ) // Rectangular shape
-                                .background(
-                                    color = Color(0xFF1B1B1B),
-                                    shape = RoundedCornerShape(4.dp) // Radius for rounded corners
-                                )
-                        )
-                        // Indicator 3 (inactive)
-                        Box(
-                            modifier = Modifier
-                                .size(
-                                    width = 20.dp, height = 8.dp
-                                ) // Rectangular shape
-                                .background(
-                                    color = Color(0xFF1B1B1B),
-                                    shape = RoundedCornerShape(4.dp) // Radius for rounded corners
-                                )
-                        )
-                    }
-
                 }
             }
 
-            // Categories
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    "Categories",
-                    color = Color.White,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
-                        textDecoration = TextDecoration.Underline, color = Color.White
-                    ) // Add underline
-                )
-            }
-            LazyRow(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(categories) { category ->
-                    CategoryItem(category)
-                }
-            }
-
-            // New Products
-            Row(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    "New products",
-                    color = Color.White,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
-                        textDecoration = TextDecoration.Underline, color = Color.White
-                    ) // Add underline
-                )
+            item {
+                // New Products Header
+                NewProductHeader()
             }
 
             // Product List
-            LazyColumn(
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(products) { product ->
-                    ProductItem(product)
-                }
+            itemsIndexed(products) { index, product ->
+                ProductItem(product = product, isLastItem = index == products.lastIndex)
             }
+        }
+    }
+}
+
+@Composable
+fun NewProductHeader() {
+    // New Products
+    Row(
+        modifier = Modifier
+            .padding(top = 10.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            "New products", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold
+        )
+        Text(
+            "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
+                textDecoration = TextDecoration.Underline, color = Color.White
+            ) // Add underline
+        )
+    }
+}
+
+@Composable
+fun CategoryHeader() {
+    // Categories
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            "Categories", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold
+        )
+        Text(
+            "See all", color = Color.White, fontSize = 14.sp, style = TextStyle(
+                textDecoration = TextDecoration.Underline, color = Color.White
+            ) // Add underline
+        )
+    }
+}
+
+@Composable
+fun DiscountBanner() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.shop_flow_card),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.fillMaxWidth() // Fill the Box
+        )
+        Column(
+            modifier = Modifier.padding(top = 24.dp), // Adjust for vertical positioning
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                "GET 20% OFF",
+                color = Color.White,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 50.dp, top = 20.dp)
+            )
+            Text(
+                "Get 20% off",
+                color = Color.White,
+                fontSize = 16.sp,
+                modifier = Modifier.padding(start = 50.dp, top = 6.dp)
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 50.dp, top = 40.dp, end = 90.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = { /* Handle click */ },
+                    modifier = Modifier.height(34.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00FF00)),
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Text("12-16 October", color = Color.Black, fontSize = 14.sp)
+                }
+
+                Spacer(modifier = Modifier.weight(1f)) // Pushes the image to the end
+
+                Image(
+                    painter = painterResource(id = R.drawable.image_view),
+                    contentDescription = "Icon",
+                    modifier = Modifier.size(40.dp)
+                )
+            }
+
+            // Indicators as rounded rectangles
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 70.dp, top = 58.dp, bottom = 16.dp
+                    ), // Adjust padding as needed
+                horizontalArrangement = Arrangement.spacedBy(8.dp), // Space between indicators
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Indicator 1 (active, highlighted)
+                Box(
+                    modifier = Modifier
+                        .size(
+                            width = 20.dp, height = 8.dp
+                        ) // Rectangular shape: wider than tall
+                        .background(
+                            color = Color(0xFF00FF00),
+                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                        )
+                )
+                // Indicator 2 (inactive)
+                Box(
+                    modifier = Modifier
+                        .size(
+                            width = 20.dp, height = 8.dp
+                        ) // Rectangular shape
+                        .background(
+                            color = Color(0xFF1B1B1B),
+                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                        )
+                )
+                // Indicator 3 (inactive)
+                Box(
+                    modifier = Modifier
+                        .size(
+                            width = 20.dp, height = 8.dp
+                        ) // Rectangular shape
+                        .background(
+                            color = Color(0xFF1B1B1B),
+                            shape = RoundedCornerShape(4.dp) // Radius for rounded corners
+                        )
+                )
+            }
+
         }
     }
 }
@@ -368,10 +386,13 @@ val products = listOf(
 )
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(product: Product, isLastItem: Boolean) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(
+                start = 16.dp, end = 16.dp, top = 0.dp, bottom = if (isLastItem) 40.dp else 0.dp
+            )
             .clip(RoundedCornerShape(16.dp))
             .background(
                 brush = Brush.verticalGradient(
