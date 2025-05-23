@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,9 +27,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
@@ -44,16 +47,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.rememberAsyncImagePainter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,15 +123,14 @@ fun SkincareApp() {
                     )
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-            }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF3D3D3D))
+            }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF1E1E1E))
             )
         }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFF3D3D3D)),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .background(Color(0xFF1E1E1E)), verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
                 // Discount Banner
@@ -290,7 +293,7 @@ fun DiscountBanner() {
                             width = 20.dp, height = 8.dp
                         ) // Rectangular shape
                         .background(
-                            color = Color(0xFF1B1B1B),
+                            color = Color(0xFF111111),
                             shape = RoundedCornerShape(4.dp) // Radius for rounded corners
                         )
                 )
@@ -301,7 +304,7 @@ fun DiscountBanner() {
                             width = 20.dp, height = 8.dp
                         ) // Rectangular shape
                         .background(
-                            color = Color(0xFF1B1B1B),
+                            color = Color(0xFF111111),
                             shape = RoundedCornerShape(4.dp) // Radius for rounded corners
                         )
                 )
@@ -328,7 +331,7 @@ fun CategoryItem(category: Category) {
             modifier = Modifier
                 .size(60.dp) // Overall size of the circular container
                 .clip(CircleShape) // Clip the entire composable to a circle
-                .background(Color(0xFF1B1B1B)), // Background color of the circle
+                .background(Color(0xFF111111)), // Background color of the circle
             contentAlignment = Alignment.Center // Center the image inside the Box
         ) {
             Image(
@@ -386,8 +389,7 @@ val products = listOf(
 )
 
 @Composable
-fun ProductItem(product: Product, isLastItem: Boolean) {
-    Box(
+fun ProductItem(product: Product, isLastItem: Boolean) {/*Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
@@ -416,58 +418,9 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
             Column(
                 modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        product.name,
-                        color = Color.White,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Icon(
-                        imageVector = Icons.Default.FavoriteBorder,
-                        contentDescription = "Favorite",
-                        tint = Color(0xFF8B5CF6),
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-                if (product.isBestSeller) {
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color(0xFF00FF00))
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                    ) {
-                        Text("Best seller", color = Color.Black, fontSize = 12.sp)
-                    }
-                }
-                Text(
-                    product.description,
-                    color = Color.White,
-                    fontSize = 14.sp,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 8.dp)
-                ) {
-                    Text(
-                        product.price,
-                        color = Color.White,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        product.originalPrice,
-                        color = Color(0xFF808080),
-                        fontSize = 14.sp,
-                        textDecoration = TextDecoration.LineThrough
-                    )
-                }
+
+
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -475,10 +428,130 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+
+                    IconButton(
+                        onClick = { *//* Add to cart *//* },
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFF2A2F30))
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ShoppingCart,
+                            contentDescription = "Add to cart",
+                            tint = Color(0xFF00FF00),
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+            }
+        }
+    }*/
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = if (isLastItem) 40.dp else 0.dp)
+            .wrapContentHeight()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.card_grey_bg),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.fillMaxWidth() // Fill the Box
+        )
+        Column(
+            modifier = Modifier.padding(top = 12.dp), // Adjust for vertical positioning
+            horizontalAlignment = Alignment.Start
+        ) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 24.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+
+                // Favorite Icon with Circular Background
+                Box(
+                    modifier = Modifier
+                        .size(40.dp) // Size of the background circle
+                        .clip(CircleShape)
+                        .background(Color.Black), // Dark gray to blend with the gradient
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = if (product.isBestSeller) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = "Favorite",
+                        tint = Color(0xFF8B5CF6),
+                        modifier = Modifier.size(26.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                if (product.isBestSeller) {
+                    Button(
+                        onClick = { /* Handle click */ },
+                        modifier = Modifier.height(34.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(
+                            "Best Seller",
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF00FF00),
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+
+            }
+
+            // Product Image Below the Row, Centered
+            Image(
+                painter = painterResource(id = R.drawable.product_image),
+                contentDescription = "Product Image",
+                modifier = Modifier
+                    .size(
+                        width = 800.dp, height = 350.dp
+                    ) // Set specific width and height
+                    .align(Alignment.CenterHorizontally) // Center the image horizontally
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp)
+                    .offset(y = (-7).dp)
+                    .wrapContentHeight()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.card_black_shape),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier.fillMaxWidth() // Fill the Box
+                )
+
+                Column(
+                    modifier = Modifier.padding(
+                        top = 12.dp, start = 14.dp, end = 14.dp
+                    ), // Adjust for vertical positioning
+                    horizontalAlignment = Alignment.Start
+                ) {
+
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        Text(
+                            product.name,
+                            color = Color(0xFF00FF00),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily(Font(R.font.tangerine, FontWeight.Bold))
+                        )
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(4.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -497,42 +570,96 @@ fun ProductItem(product: Product, isLastItem: Boolean) {
                                 fontSize = 12.sp
                             )
                         }
+                    }
+
+                    Text(
+                        product.description,
+                        color = Color.White,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(top = 30.dp)
+                    ) {
+                        Text(
+                            product.price,
+                            color = Color(0xFF8B5CF6),
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            product.originalPrice,
+                            color = Color(0xFF808080),
+                            fontSize = 16.sp,
+                            textDecoration = TextDecoration.LineThrough
+                        )
+                    }
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
                         Row(
+                            modifier = Modifier.padding(top = 8.dp),
                             horizontalArrangement = Arrangement.spacedBy(4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             repeat(5) {
                                 Icon(
-                                    imageVector = Icons.Default.FavoriteBorder,
+                                    imageVector = Icons.Default.Star,
                                     contentDescription = "Star",
                                     tint = Color(0xFFFFD700),
-                                    modifier = Modifier.size(12.dp)
+                                    modifier = Modifier.size(18.dp)
                                 )
                             }
+
                             Text(
                                 "249 reviews",
-                                color = Color(0xFFFFD700),
-                                fontSize = 12.sp,
-                                modifier = Modifier.padding(start = 4.dp)
+                                color = Color.White,
+                                fontSize = 14.sp,
+                                modifier = Modifier.padding(start = 4.dp),
+                                style = TextStyle(
+                                    textDecoration = TextDecoration.Underline, color = Color.White
+                                ) // Add underline
                             )
                         }
                     }
-                    IconButton(
-                        onClick = { /* Add to cart */ },
+
+                    Row(
                         modifier = Modifier
-                            .size(40.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF2A2F30))
+                            .fillMaxWidth()
+                            .offset(x = (-2).dp, y = (-36).dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.ShoppingCart,
-                            contentDescription = "Add to cart",
-                            tint = Color(0xFF00FF00),
-                            modifier = Modifier.size(24.dp)
-                        )
+                        Box(
+                            modifier = Modifier
+                                .size(50.dp) // Size of the background circle
+                                .clip(CircleShape)
+                                .border(
+                                    width = 2.dp, // Thickness of the outline
+                                    color = Color(0xFF00FF00), // Color of the outline
+                                    shape = CircleShape
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.cart3),
+                                contentDescription = "Cart",
+                                colorFilter = ColorFilter.tint(Color(0xFF00FF00)),
+                                modifier = Modifier.size(26.dp)
+                            )
+                        }
                     }
+
                 }
             }
+
         }
     }
+
 }
